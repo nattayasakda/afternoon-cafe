@@ -162,13 +162,13 @@ function loadPoem() {
     if (!poemText) return;
 
     const poems = [
-        "A cup of warmth, a floral breeze,\nQuiet moments beneath the trees.",
-        "Petals unfurl in the morning light,\nCoffee brewing, making everything right.",
-        "Jasmine whispers, espresso gleams,\nA perfect corner for your daily dreams.",
-        "Sip the morning, taste the bloom,\nLet the sunlight fill the room.",
-        "Like lavender fields and a warm embrace,\nFind your peace in this cozy place.",
-        "A rose, a cup, a quiet start,\nSimple joys that warm the heart.",
-        "Golden hour and a roasted bean,\nThe sweetest escape you've ever seen."
+        "A cup of warmth, a floral breeze,\nQuiet moments beneath the trees.\n\nอุ่นไอกาแฟกรุ่น กลิ่นละมุนบุปผาพัดพา\nช่วงเวลาอันเงียบสงบ ใต้ร่มเงาพฤกษา",
+        "Petals unfurl in the morning light,\nCoffee brewing, making everything right.\n\nกลีบดอกไม้แย้มบาน รับแสงแรกยามเช้า\nกาแฟอุ่นหอมกรุ่น คอยเยียวยาใจเรา",
+        "Jasmine whispers, espresso gleams,\nA perfect corner for your daily dreams.\n\nมะลิกระซิบแผ่วเบา เอสเปรสโซ่เงางาม\nมุมสงบแสนหวาน ให้ความฝันงดงามติดตาม",
+        "Sip the morning, taste the bloom,\nLet the sunlight fill the room.\n\nจิบยามเช้าอันสดใส ลิ้มรสชาติบุปผาบาน\nปล่อยแสงอุ่นตะวันส่อง ทอประกายทั่วห้องกว้าง",
+        "Like lavender fields and a warm embrace,\nFind your peace in this cozy place.\n\nดั่งทุ่งลาเวนเดอร์กว้าง และอ้อมกอดอันอบอุ่น\nค้นพบความสงบใจ ในมุมพักใจแสนละมุน",
+        "A rose, a cup, a quiet start,\nSimple joys that warm the heart.\n\nกุหลาบงาม กาแฟกรุ่น เริ่มต้นอย่างเงียบงัน\nความสุขแสนเรียบง่าย ที่หล่อเลี้ยงใจทุกวี่วัน",
+        "Golden hour and a roasted bean,\nThe sweetest escape you've ever seen.\n\nแสงสีทองยามเย็น กับเมล็ดกาแฟคั่วหอม\nมุมหลีกหนีที่แสนหวาน ที่สุดเท่าที่หัวใจยอม"
     ];
 
     const today = new Date().getDay(); // 0 (Sun) to 6 (Sat)
