@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miriam Coffee | Premium Coffee</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Miriam<span>Coffee</span></div>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#location">Location</a>
+        </nav>
+        <button class="btn-primary" onclick="openBookingModal()">Book a Table</button>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Experience the <br><span class="highlight">Perfect Brew</span></h1>
+                <p>Crafted with passion, poured with precision. Discover the rich flavors of our artisanal coffee blends in a cozy, welcoming atmosphere.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})">View Menu</button>
+                    <button class="btn-secondary" onclick="openBookingModal()">Book a Table</button>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="assets/hero.png" alt="Coffee Shop Interior" class="hero-image">
+            </div>
+        </section>
+
+        <section id="menu" class="menu-section">
+            <div class="section-header">
+                <h2>Our Signature Blends</h2>
+                <p>Carefully selected beans, roasted to perfection.</p>
+            </div>
+            
+            <div class="menu-grid">
+                <!-- Item 1 -->
+                <div class="menu-card">
+                    <div class="card-img-wrapper">
+                        <img src="assets/espresso.png" alt="Espresso">
+                    </div>
+                    <div class="card-content">
+                        <h3>Classic Espresso</h3>
+                        <p>Rich, bold, and velvety. The perfect wake-up call to start your morning right.</p>
+                        <div class="card-footer">
+                            <span class="price">฿80</span>
+                            <button class="btn-add">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-card">
+                    <div class="card-img-wrapper">
+                        <img src="assets/cappuccino.png" alt="Cappuccino">
+                    </div>
+                    <div class="card-content">
+                        <h3>Velvet Cappuccino</h3>
+                        <p>Perfectly balanced espresso with steamed milk and thick foam, topped with beautiful latte art.</p>
+                        <div class="card-footer">
+                            <span class="price">฿100</span>
+                            <button class="btn-add">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-card">
+                    <div class="card-img-wrapper">
+                        <img src="assets/iced_latte.png" alt="Iced Latte">
+                    </div>
+                    <div class="card-content">
+                        <h3>Signature Iced Latte</h3>
+                        <p>Refreshing, smooth, and creamy. A summer favorite poured over perfectly squared ice.</p>
+                        <div class="card-footer">
+                            <span class="price">฿120</span>
+                            <button class="btn-add">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="location" class="location-section">
+            <div class="section-header">
+                <h2>Visit Us</h2>
+                <p>5/1 ถ.เลี่ยงเมือง ต.ขามใหญ่ อ.เมือง จ.อุบลราชธานี 34000</p>
+            </div>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=5%2F1%20%E0%B8%96.%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%20%E0%B8%95.%E0%B8%82%E0%B8%B2%E0%B8%A1%E0%B9%83%E0%B8%AB%E0%B8%8D%E0%B9%88%20%E0%B8%AD.%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%20%E0%B8%88.%E0%B8%AD%E0%B8%B8%E0%B8%9A%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5%2034000&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Miriam Coffee. All rights reserved.</p>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            <div id="bookingFormSection">
+                <h2>Book Your Table</h2>
+                <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+                    <div class="form-group">
+                        <label for="bookingDate">Select Date:</label>
+                        <input type="date" id="bookingDate" required min="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Time:</label>
+                        <div class="time-slots">
+                            <label class="time-slot"><input type="radio" name="timeSlot" value="09:00:00" required><span>09:00</span></label>
+                            <label class="time-slot"><input type="radio" name="timeSlot" value="11:00:00"><span>11:00</span></label>
+                            <label class="time-slot"><input type="radio" name="timeSlot" value="13:00:00"><span>13:00</span></label>
+                            <label class="time-slot"><input type="radio" name="timeSlot" value="15:00:00"><span>15:00</span></label>
+                            <label class="time-slot"><input type="radio" name="timeSlot" value="17:00:00"><span>17:00</span></label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pax">Guests:</label>
+                        <select id="pax" required>
+                            <option value="1">1 Person</option>
+                            <option value="2" selected>2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5">5 People</option>
+                            <option value="6">6+ People</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerName">Your Name:</label>
+                        <input type="text" id="customerName" required placeholder="John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <input type="tel" id="phoneNumber" required placeholder="08x-xxx-xxxx">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="note">Special Notes (Optional):</label>
+                        <textarea id="note" rows="2" placeholder="e.g. Window seat please"></textarea>
+                    </div>
+                    
+                    <div id="errorMessage" class="error-msg"></div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeBookingModal()">Cancel</button>
+                        <button type="submit" class="btn-primary" id="submitBtn">Confirm Booking</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Success Section -->
+            <div id="successSection" style="display: none; text-align: center;">
+                <div class="success-icon">✅</div>
+                <h2>Booking Confirmed!</h2>
+                <div class="booking-receipt">
+                    <p>Reference Code: <strong id="refCodeDisplay" class="highlight"></strong></p>
+                    <hr>
+                    <p>Name: <span id="rName"></span></p>
+                    <p>Phone: <span id="rPhone"></span></p>
+                    <p>Date: <span id="rDate"></span></p>
+                    <p>Time: <span id="rTime"></span></p>
+                    <p>Guests: <span id="rPax"></span></p>
+                    <p>Note: <span id="rNote"></span></p>
+                    <hr>
+                    <p class="receipt-note">* Please arrive 15 mins before your time slot.<br>* Please screenshot this page for your reference.</p>
+                </div>
+                <button class="btn-primary" onclick="closeBookingModal()">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
