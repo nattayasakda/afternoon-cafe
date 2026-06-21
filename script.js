@@ -156,8 +156,30 @@ async function fetchWeather() {
     }
 }
 
-// Call fetchWeather on load
-document.addEventListener('DOMContentLoaded', fetchWeather);
+// --- Poem Logic ---
+function loadPoem() {
+    const poemText = document.getElementById('dailyPoem');
+    if (!poemText) return;
+
+    const poems = [
+        "A cup of warmth, a floral breeze,\nQuiet moments beneath the trees.",
+        "Petals unfurl in the morning light,\nCoffee brewing, making everything right.",
+        "Jasmine whispers, espresso gleams,\nA perfect corner for your daily dreams.",
+        "Sip the morning, taste the bloom,\nLet the sunlight fill the room.",
+        "Like lavender fields and a warm embrace,\nFind your peace in this cozy place.",
+        "A rose, a cup, a quiet start,\nSimple joys that warm the heart.",
+        "Golden hour and a roasted bean,\nThe sweetest escape you've ever seen."
+    ];
+
+    const today = new Date().getDay(); // 0 (Sun) to 6 (Sat)
+    poemText.innerText = poems[today];
+}
+
+// Call fetchWeather and loadPoem on load
+document.addEventListener('DOMContentLoaded', () => {
+    fetchWeather();
+    loadPoem();
+});
 
 // Export for Node.js testing environment
 if (typeof module !== 'undefined' && module.exports) {
