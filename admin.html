@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Miriam Coffee</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="admin-body">
+    <header class="navbar admin-navbar">
+        <div class="logo">Miriam<span>Coffee</span> <span class="admin-badge">Admin</span></div>
+        <nav class="nav-links">
+            <a href="index.html">Back to Site</a>
+        </nav>
+    </header>
+
+    <main class="admin-main">
+        <div class="section-header">
+            <h2>Reservations Dashboard</h2>
+            <p>Manage customer table bookings</p>
+        </div>
+
+        <div class="admin-container">
+            <!-- State Management Container -->
+            <div id="loadingState" class="state-container">
+                <div class="loading-spinner"></div>
+                <p>กำลังโหลดข้อมูลการจอง...</p>
+            </div>
+
+            <div id="errorState" class="state-container" style="display: none;">
+                <div class="error-icon">❌</div>
+                <h3 id="errorMessage">ไม่สามารถดึงข้อมูลได้</h3>
+                <p>โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตหรือรีเฟรชหน้าเว็บอีกครั้ง</p>
+                <button class="btn-primary mt-3" onclick="fetchReservations()">ลองใหม่อีกครั้ง</button>
+            </div>
+
+            <div id="emptyState" class="state-container" style="display: none;">
+                <div class="empty-icon">📭</div>
+                <h3>ยังไม่มีข้อมูลการจองในระบบ</h3>
+                <p>เมื่อลูกค้าทำการจองโต๊ะ ข้อมูลจะมาแสดงที่นี่</p>
+            </div>
+
+            <!-- Data Table -->
+            <div id="dataState" style="display: none;">
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Ref Code</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Pax</th>
+                                <th>Status</th>
+                                <th>Note</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reservationsTableBody">
+                            <!-- Rows will be injected here via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

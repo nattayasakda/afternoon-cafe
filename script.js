@@ -134,6 +134,31 @@ async function handleBookingSubmit(event) {
     }
 }
 
+// --- Weather Fetch Logic ---
+async function fetchWeather() {
+    const weatherText = document.getElementById('weatherText');
+    if (!weatherText) return;
+
+    try {
+        // Ubon Ratchathani coordinates: 15.2293, 104.8571
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=15.2293&longitude=104.8571&current_weather=true');
+        const data = await response.json();
+        
+        if (data && data.current_weather) {
+            const temp = data.current_weather.temperature;
+            weatherText.innerText = `Ubon Ratchathani: ${temp}°C`;
+        } else {
+            weatherText.innerText = 'Weather currently unavailable';
+        }
+    } catch (error) {
+        console.error('Error fetching weather:', error);
+        weatherText.innerText = 'Weather currently unavailable';
+    }
+}
+
+// Call fetchWeather on load
+document.addEventListener('DOMContentLoaded', fetchWeather);
+
 // Export for Node.js testing environment
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
